@@ -336,7 +336,7 @@ def checkout_view(request):
         
         host = request.get_host()
         paypal_dict = {
-            'buisness' : settings.PAYPAL_RECEIVER_EMAIL,
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
             'amount' : '200',
             'item_name': "Order-Item-No-3",
             'invoice': "INVOICE_NO-3",
