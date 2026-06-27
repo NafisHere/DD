@@ -22,19 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-u+d92%-x-canivgoa20f6&qs3&hi81h0bj+!x*+lsv3ip*57(4')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True').lower() in ('1', 'true', 'yes', 'on')
-
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if host.strip()]
-CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:8000,http://localhost:8000').split(',') if origin.strip()]
-
-
-
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-local-key")
 DEBUG = os.environ.get("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+
+ALLOWED_HOSTS = ["dailydelight.onrender.com", "localhost", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://dailydelight.onrender.com"]
+
 
 # Application definition
 
@@ -141,18 +134,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files (user uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
